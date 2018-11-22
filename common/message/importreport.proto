@@ -1,0 +1,10 @@
+syntax="proto3";
+
+option go_package = "github.com/7joe7/csvstreamtest/common/model";
+
+package model;
+
+message ImportReport {
+    bool success = 1;
+    string error = 2;
+}

@@ -1,0 +1,12 @@
+syntax="proto3";
+
+option go_package = "github.com/7joe7/csvstreamtest/common/rpc";
+
+package rpc;
+
+import "common/message/client.proto";
+import "common/message/importreport.proto";
+
+service Importer {
+   rpc ImportClients(stream model.Client) returns (model.ImportReport) {}
+}

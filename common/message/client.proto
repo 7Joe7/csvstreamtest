@@ -1,0 +1,16 @@
+syntax="proto3";
+
+option go_package = "github.com/7joe7/csvstreamtest/common/model";
+
+package model;
+
+message Client {
+    // @inject_tag: csv:"id"
+    int32 id = 1;
+    // @inject_tag: csv:"name"
+    string name = 2;
+    // @inject_tag: csv:"email"
+    string email = 3;
+    // @inject_tag: csv:"mobile_number"
+    string mobileNumber = 4;
+}

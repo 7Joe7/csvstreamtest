@@ -1,0 +1,49 @@
+version: "3.7"
+
+services:
+
+  dbmanager:
+    build:
+      context: ./dbmanager
+    depends_on:
+      - mysql
+      - consul
+
+  csvreader:
+    build:
+      context: ./csvreader
+    volumes:
+      - ./data/imports:/opt/data
+    depends_on:
+      - dbmanager
+      - consul
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      # should be overwritten on prod env
+      MYSQL_ROOT_PASSWORD: uwBU0vCf5n
+    volumes:
+      - ./data/mysql/crm.sql:/docker-entrypoint-initdb.d/00-crm.sql
+    healthcheck:
+      test: "mysql --password=\"$$MYSQL_ROOT_PASSWORD\" -e \"use end\""
+      interval: 5s
+      retries: 50
+
+  consul:
+    image: consul:latest
+    # would be better to have some local default automatically populated seed and on prod have this persistence
+    entrypoint: sh -c "consul agent -client=0.0.0.0 -bootstrap -server -data-dir=/consul/data"
+    volumes:
+      - ./data/consul:/consul/data
+    healthcheck:
+      test:  consul members -status=alive
+      interval: 3s
+
+  migrate:
+    image: migrate/migrate
+    command: -path=/migrations -database=mysql://root:uwBU0vCf5n@tcp(mysql:3306)/crm?charset=utf8&parseTime=True&loc=Local up
+    volumes:
+      - ./dbmanager/migrations:/migrations
+    depends_on:
+      - mysql
