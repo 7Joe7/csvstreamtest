@@ -40,6 +40,19 @@ services:
       test:  consul members -status=alive
       interval: 3s
 
+  start_consul:
+      image: ubuntu:14.04
+      depends_on:
+        - consul
+      command: >
+        /bin/bash -c "
+          while ! nc -z consul 8500;
+          do
+            sleep 1;
+          done;
+          echo Consul is ready!;
+        "
+
   migrate:
     image: migrate/migrate
     command: -path=/migrations -database=mysql://root:uwBU0vCf5n@tcp(mysql:3306)/crm?charset=utf8&parseTime=True&loc=Local up
@@ -47,3 +60,10 @@ services:
       - ./dbmanager/migrations:/migrations
     depends_on:
       - mysql
+
+  # convenience aggregator for all microservices
+  uservices:
+      image: frameloss/empty-container
+      depends_on:
+        - csvreader
+        - dbmanager

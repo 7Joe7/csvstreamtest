@@ -22,16 +22,19 @@ var userImportHeaders = []string{"id", "name", "email", "mobile_number"}
 
 // ImportsService is a service for managing imports.
 type ImportsService struct {
-	log      *zerolog.Logger
-	importer rpc.ImporterClient
+	log       *zerolog.Logger
+	importer  rpc.ImporterClient
+	importSrc ImportSrc
 }
 
 // NewImportsService creates a new import service.
 func NewImportsService(log *zerolog.Logger, importer rpc.ImporterClient) *ImportsService {
-	return &ImportsService{
+	src := &ImportsService{
 		log:      log,
 		importer: importer,
 	}
+	src.importSrc = src
+	return src
 }
 
 // ImportTar imports from .tar file.
@@ -55,13 +58,13 @@ func (src *ImportsService) ImportTar(reader io.Reader) error {
 			// we depend on the suffix of the file, ideal would be to check encoding as well whether it is a text file
 			switch filepath.Ext(header.Name) { // potentially we can support other import file formats
 			case ".csv":
-				err = src.ImportCSV(tarReader)
+				err = src.importSrc.ImportCSV(tarReader)
 				if err != nil {
 					src.log.Error().Err(err).Msg("error importing CSV file")
 				}
 			}
 		default:
-			src.log.Error().Msgf("unable to figure out type: %c of file", header.Typeflag, header.Name)
+			src.log.Error().Msgf("unable to figure out type: %c of file %s", header.Typeflag, header.Name)
 		}
 	}
 	return nil

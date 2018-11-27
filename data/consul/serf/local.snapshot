@@ -6,3 +6,17 @@ alive: 6d88e44aa0bc 172.22.0.3:8301
 event-clock: 3
 alive: 57670a4abb30 172.22.0.2:8301
 event-clock: 4
+alive: 824d958c3a89 172.22.0.3:8301
+event-clock: 5
+alive: 824d958c3a89 172.22.0.2:8301
+event-clock: 6
+alive: 824d958c3a89 172.22.0.2:8301
+event-clock: 7
+alive: 99108a388ced 172.22.0.2:8301
+event-clock: 8
+alive: 4e6b2c244a2d 172.23.0.2:8301
+event-clock: 9
+alive: c040f926680d 172.24.0.2:8301
+event-clock: 10
+alive: f80b211654f0 172.25.0.2:8301
+event-clock: 11

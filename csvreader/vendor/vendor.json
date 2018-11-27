@@ -5,26 +5,26 @@
 		{
 			"checksumSHA1": "DVr/0pJtwq/GZtHpDgp9FV2sQ74=",
 			"path": "github.com/7joe7/csvstreamtest/common/catcher",
-			"revision": "9e28822c762575b695260cdf5c5944317bdd0572",
-			"revisionTime": "2018-11-21T08:14:18Z"
+			"revision": "0cffb62928fc42e139beaaf9499e74538b6688c0",
+			"revisionTime": "2018-11-22T04:55:45Z"
 		},
 		{
 			"checksumSHA1": "f5rJKDk9LJKCS+16IQFt844Ghxk=",
 			"path": "github.com/7joe7/csvstreamtest/common/logger",
-			"revision": "9e28822c762575b695260cdf5c5944317bdd0572",
-			"revisionTime": "2018-11-21T08:14:18Z"
+			"revision": "0cffb62928fc42e139beaaf9499e74538b6688c0",
+			"revisionTime": "2018-11-22T04:55:45Z"
 		},
 		{
 			"checksumSHA1": "bzXmAdfEiLznRKk3l0zIGCms4oU=",
 			"path": "github.com/7joe7/csvstreamtest/common/model",
-			"revision": "9e28822c762575b695260cdf5c5944317bdd0572",
-			"revisionTime": "2018-11-21T08:14:18Z"
+			"revision": "0cffb62928fc42e139beaaf9499e74538b6688c0",
+			"revisionTime": "2018-11-22T04:55:45Z"
 		},
 		{
 			"checksumSHA1": "9FGg8aGLIggIJsfnLaAm9Jo3RNw=",
 			"path": "github.com/7joe7/csvstreamtest/common/rpc",
-			"revision": "9e28822c762575b695260cdf5c5944317bdd0572",
-			"revisionTime": "2018-11-21T08:14:18Z"
+			"revision": "0cffb62928fc42e139beaaf9499e74538b6688c0",
+			"revisionTime": "2018-11-22T04:55:45Z"
 		},
 		{
 			"checksumSHA1": "eiRzLoenl7oEVCuoT+Ju/zWBlKg=",
@@ -32,6 +32,13 @@
 			"path": "github.com/armon/go-metrics",
 			"revision": "eba25a143821cec25bdb48fe64dd7b7a6152d01d",
 			"revisionTime": "2018-11-16T23:17:04Z"
+		},
+		{
+			"checksumSHA1": "dvabztWVQX8f6oMLRyv4dLH+TGY=",
+			"origin": "github.com/stretchr/testify/vendor/github.com/davecgh/go-spew/spew",
+			"path": "github.com/davecgh/go-spew/spew",
+			"revision": "8019298d9fa5a04fc2ad10ae03349df3483096a6",
+			"revisionTime": "2018-10-28T12:27:15Z"
 		},
 		{
 			"checksumSHA1": "MVW67aGwWsD1pGmL04HlQlaOfKE=",
@@ -131,6 +138,13 @@
 			"revisionTime": "2018-10-08T04:53:15Z"
 		},
 		{
+			"checksumSHA1": "LuFv4/jlrmFNnDb/5SCSEPAM9vU=",
+			"origin": "github.com/stretchr/testify/vendor/github.com/pmezard/go-difflib/difflib",
+			"path": "github.com/pmezard/go-difflib/difflib",
+			"revision": "8019298d9fa5a04fc2ad10ae03349df3483096a6",
+			"revisionTime": "2018-10-28T12:27:15Z"
+		},
+		{
 			"checksumSHA1": "F9W8yLDTjhto3twicbNOHU966eM=",
 			"path": "github.com/radovskyb/watcher",
 			"revision": "25a66c5e3b2606303dab04f005f1c276f0227f62",
@@ -153,6 +167,25 @@
 			"path": "github.com/rs/zerolog/internal/json",
 			"revision": "8e36cbf881d3eadd0c6455d55588af60c7cc4736",
 			"revisionTime": "2018-09-28T01:11:43Z"
+		},
+		{
+			"checksumSHA1": "F7CERINyYGUQGpVUt5vF/jMTwTY=",
+			"origin": "github.com/stretchr/testify/vendor/github.com/stretchr/objx",
+			"path": "github.com/stretchr/objx",
+			"revision": "8019298d9fa5a04fc2ad10ae03349df3483096a6",
+			"revisionTime": "2018-10-28T12:27:15Z"
+		},
+		{
+			"checksumSHA1": "v3LEmqP4Cb6qGCIP7mJk7l2ZXw8=",
+			"path": "github.com/stretchr/testify/assert",
+			"revision": "8019298d9fa5a04fc2ad10ae03349df3483096a6",
+			"revisionTime": "2018-10-28T12:27:15Z"
+		},
+		{
+			"checksumSHA1": "WmBSFdqpdYRIkp0I408JIZ3LDMY=",
+			"path": "github.com/stretchr/testify/mock",
+			"revision": "8019298d9fa5a04fc2ad10ae03349df3483096a6",
+			"revisionTime": "2018-10-28T12:27:15Z"
 		},
 		{
 			"checksumSHA1": "GtamqiJoL7PGHsN454AoffBFMa8=",

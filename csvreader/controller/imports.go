@@ -65,6 +65,7 @@ func (ctr *ImportsController) Start() error {
 	return nil
 }
 
+// Import imports the file specified by path
 // careful about potential file inclusion via variable - if ever the path is provided by user
 func (ctr *ImportsController) Import(path string) error {
 	ctr.log.Info().Msgf("found file %s", path)
@@ -89,6 +90,7 @@ func (ctr *ImportsController) Import(path string) error {
 	return nil
 }
 
+// Stop stops watching the data folder
 func (ctr *ImportsController) Stop() {
 	ctr.watcher.Close()
 }

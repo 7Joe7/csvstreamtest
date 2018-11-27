@@ -58,7 +58,7 @@ func main() {
 		case cfgMySQLUsername:
 			dbUsername = pair.Value
 		case cfgMySQLPassword:
-			zlog.Info().Msgf("configuration key '%s', value '***********'", pair.Key)
+			zlog.Info().Msgf("configuration key '%s', value '***********'", cfgMySQLPassword)
 			dbPwd = pair.Value
 		case cfgMySQLHost:
 			dbHost = pair.Value
@@ -83,11 +83,6 @@ func main() {
 	}
 
 	clients := repository.NewORMClient(crmDB)
-	// db connection test
-	_, err = clients.Find(nil)
-	if err != nil {
-		zlog.Fatal().Err(err).Msg("could not find clients")
-	}
 	clientsSrc := service.NewClientsService(zlog, clients)
 
 	tcpSocket, err := net.Listen("tcp", fmt.Sprintf(":%s", string(grpcPort)))
