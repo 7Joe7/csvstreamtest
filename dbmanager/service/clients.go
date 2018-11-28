@@ -6,6 +6,7 @@ import (
 	"github.com/7joe7/csvstreamtest/common/model"
 	"github.com/7joe7/csvstreamtest/common/rpc"
 	"github.com/7joe7/csvstreamtest/common/types"
+	"github.com/7joe7/csvstreamtest/dbmanager/repository"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 )
@@ -13,11 +14,11 @@ import (
 // ClientsService is a service for managing clients.
 type ClientsService struct {
 	log     *zerolog.Logger
-	clients clientRepo
+	clients repository.ClientRepo
 }
 
 // NewClientsService creates a new client service.
-func NewClientsService(log *zerolog.Logger, clients clientRepo) *ClientsService {
+func NewClientsService(log *zerolog.Logger, clients repository.ClientRepo) *ClientsService {
 	return &ClientsService{
 		log:     log,
 		clients: clients,
@@ -30,8 +31,7 @@ func (src *ClientsService) ImportClients(srv rpc.Importer_ImportClientsServer) (
 	defer func() {
 		if err != nil {
 			err = srv.SendAndClose(&model.ImportReport{
-				Success: false,
-				Error:   err.Error(),
+				Error: err.Error(),
 			})
 			if err != nil {
 				src.log.Error().Err(err).Msg("could not send import report")
@@ -43,7 +43,7 @@ func (src *ClientsService) ImportClients(srv rpc.Importer_ImportClientsServer) (
 			src.log.Error().Err(err).Msg("could not send import report")
 		}
 	}()
-	var trClients clientRepo
+	var trClients repository.ClientRepo
 	trClients, err = src.clients.NewWithTransaction()
 	if err != nil {
 		src.log.Error().Err(err).Msg("could not start transaction")
@@ -95,7 +95,7 @@ func (src *ClientsService) ImportClients(srv rpc.Importer_ImportClientsServer) (
 			src.log.Info().Str("email", client.Email).Msg("creating client")
 			err = trClients.Store(client)
 			if err != nil {
-				err = errors.Wrapf(err, "could not create client: %d", client.Id)
+				err = errors.Wrapf(err, "could not create client: %s", client.Email)
 				return
 			}
 		default:

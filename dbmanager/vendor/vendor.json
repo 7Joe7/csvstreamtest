@@ -5,38 +5,32 @@
 		{
 			"checksumSHA1": "DVr/0pJtwq/GZtHpDgp9FV2sQ74=",
 			"path": "github.com/7joe7/csvstreamtest/common/catcher",
-			"revision": "9e28822c762575b695260cdf5c5944317bdd0572",
-			"revisionTime": "2018-11-21T08:14:18Z"
+			"revision": "92dd41d009d19f247a69ed24f75c37168975645d",
+			"revisionTime": "2018-11-27T08:21:51Z"
 		},
 		{
 			"checksumSHA1": "IPaUkiq7bQp+3a4gjaGk2gN3Da0=",
 			"path": "github.com/7joe7/csvstreamtest/common/dbconn",
-			"revision": "9e28822c762575b695260cdf5c5944317bdd0572",
-			"revisionTime": "2018-11-21T08:14:18Z"
+			"revision": "92dd41d009d19f247a69ed24f75c37168975645d",
+			"revisionTime": "2018-11-27T08:21:51Z"
 		},
 		{
 			"checksumSHA1": "f5rJKDk9LJKCS+16IQFt844Ghxk=",
 			"path": "github.com/7joe7/csvstreamtest/common/logger",
-			"revision": "9e28822c762575b695260cdf5c5944317bdd0572",
-			"revisionTime": "2018-11-21T08:14:18Z"
+			"revision": "92dd41d009d19f247a69ed24f75c37168975645d",
+			"revisionTime": "2018-11-27T08:21:51Z"
 		},
 		{
-			"checksumSHA1": "bzXmAdfEiLznRKk3l0zIGCms4oU=",
-			"path": "github.com/7joe7/csvstreamtest/common/model",
-			"revision": "9e28822c762575b695260cdf5c5944317bdd0572",
-			"revisionTime": "2018-11-21T08:14:18Z"
-		},
-		{
-			"checksumSHA1": "9FGg8aGLIggIJsfnLaAm9Jo3RNw=",
+			"checksumSHA1": "/wsArHAiI3ZIDgs2u6WG5p0CsAE=",
 			"path": "github.com/7joe7/csvstreamtest/common/rpc",
-			"revision": "9e28822c762575b695260cdf5c5944317bdd0572",
-			"revisionTime": "2018-11-21T08:14:18Z"
+			"revision": "92dd41d009d19f247a69ed24f75c37168975645d",
+			"revisionTime": "2018-11-27T08:21:51Z"
 		},
 		{
 			"checksumSHA1": "pjdRBadMYsq/FXDvoAR8x2pX6BQ=",
 			"path": "github.com/7joe7/csvstreamtest/common/types",
-			"revision": "9e28822c762575b695260cdf5c5944317bdd0572",
-			"revisionTime": "2018-11-21T08:14:18Z"
+			"revision": "92dd41d009d19f247a69ed24f75c37168975645d",
+			"revisionTime": "2018-11-27T08:21:51Z"
 		},
 		{
 			"checksumSHA1": "eiRzLoenl7oEVCuoT+Ju/zWBlKg=",
@@ -50,12 +44,6 @@
 			"path": "github.com/go-sql-driver/mysql",
 			"revision": "361f66ef3b53de1f16b7f2af9ef38a6c159ceb3e",
 			"revisionTime": "2018-10-01T07:22:39Z"
-		},
-		{
-			"checksumSHA1": "MVW67aGwWsD1pGmL04HlQlaOfKE=",
-			"path": "github.com/golang/protobuf/proto",
-			"revision": "882cf97a83ad205fd22af574246a3bc647d7a7d2",
-			"revisionTime": "2018-11-20T00:18:57Z"
 		},
 		{
 			"checksumSHA1": "tkJPssYejSjuAwE2tdEnoEIj93Q=",
@@ -171,12 +159,6 @@
 			"path": "github.com/rs/zerolog/internal/json",
 			"revision": "8e36cbf881d3eadd0c6455d55588af60c7cc4736",
 			"revisionTime": "2018-09-28T01:11:43Z"
-		},
-		{
-			"checksumSHA1": "GtamqiJoL7PGHsN454AoffBFMa8=",
-			"path": "golang.org/x/net/context",
-			"revision": "c10e9556a7bc0e7c942242b606f0acf024ad5d6a",
-			"revisionTime": "2018-11-02T08:55:01Z"
 		},
 		{
 			"checksumSHA1": "pCY4YtdNKVBYRbNvODjx8hj0hIs=",
@@ -379,12 +361,6 @@
 		{
 			"checksumSHA1": "350+v+N+AuknxomqjND19nR969g=",
 			"path": "google.golang.org/grpc/keepalive",
-			"revision": "ef2b8e2f53fcd6654d12966394462f84e0f04066",
-			"revisionTime": "2018-11-15T21:29:39Z"
-		},
-		{
-			"checksumSHA1": "0OoJw+Wc7+1Ox5nBbwjgqWW8Xpw=",
-			"path": "google.golang.org/grpc/metadata",
 			"revision": "ef2b8e2f53fcd6654d12966394462f84e0f04066",
 			"revisionTime": "2018-11-15T21:29:39Z"
 		},

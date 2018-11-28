@@ -20,7 +20,6 @@ import (
 func TestNewImportsService(t *testing.T) {
 	log := zerolog.New(ioutil.Discard)
 	importerMock := &mocks.ImporterClient{}
-
 	src := NewImportsService(&log, importerMock)
 	assert.Equal(t, &log, src.log)
 	assert.Equal(t, importerMock, src.importer)
@@ -53,7 +52,7 @@ func TestImportsService_ImportTar(t *testing.T) {
 	tests := []struct {
 		name         string
 		tarReader    io.Reader
-		expectations []func(*mocks.ImporterClient, *mocks.ImportSrc)
+		expectations func(*mocks.ImporterClient, *mocks.ImportSrc)
 		expectError  bool
 	}{
 		{
@@ -68,21 +67,19 @@ func TestImportsService_ImportTar(t *testing.T) {
 		{
 			name:      "tar with a CSV file should call ImportCSV",
 			tarReader: fullBuffer,
-			expectations: []func(*mocks.ImporterClient, *mocks.ImportSrc){
-				func(importer *mocks.ImporterClient, src *mocks.ImportSrc) {
-					// prepare expected param
-					b := bytes.NewBuffer([]byte{})
-					w := tar.NewWriter(b)
-					w.WriteHeader(&tar.Header{
-						Typeflag: tar.TypeReg,
-						Name:     "test.csv",
-					})
-					w.Flush()
-					w.Close()
-					r := tar.NewReader(b)
-					r.Next()
-					src.On("ImportCSV", r).Return(nil)
-				},
+			expectations: func(importer *mocks.ImporterClient, src *mocks.ImportSrc) {
+				// prepare expected param
+				b := bytes.NewBuffer([]byte{})
+				w := tar.NewWriter(b)
+				w.WriteHeader(&tar.Header{
+					Typeflag: tar.TypeReg,
+					Name:     "test.csv",
+				})
+				w.Flush()
+				w.Close()
+				r := tar.NewReader(b)
+				r.Next()
+				src.On("ImportCSV", r).Return(nil)
 			},
 		},
 	}
@@ -99,8 +96,8 @@ func TestImportsService_ImportTar(t *testing.T) {
 				importSrc: srcMock,
 			}
 			// we provide all mocks with expected function calls and return values declared in the test definition
-			for _, expectation := range test.expectations {
-				expectation(importerMock, srcMock)
+			if test.expectations != nil {
+				test.expectations(importerMock, srcMock)
 			}
 			err := src.ImportTar(test.tarReader)
 			if test.expectError {
@@ -120,7 +117,7 @@ func TestImportsService_ImportCSV(t *testing.T) {
 	tests := []struct {
 		name         string
 		csvReader    io.Reader
-		expectations []func(*mocks.ImporterClient, *mocks.ImportSrc)
+		expectations func(*mocks.ImporterClient, *mocks.ImportSrc)
 		expectError  bool
 	}{
 		{
@@ -130,24 +127,20 @@ func TestImportsService_ImportCSV(t *testing.T) {
 		{
 			name:      "correct headers no data should call import clients",
 			csvReader: bytes.NewBufferString(strings.Join(userImportHeaders, ",")),
-			expectations: []func(*mocks.ImporterClient, *mocks.ImportSrc){
-				func(importer *mocks.ImporterClient, src *mocks.ImportSrc) {
-					streamMock := &mocks.Importer_ImportClientsClient{}
-					importer.On("ImportClients", context.Background()).Return(streamMock, nil)
-					streamMock.On("CloseAndRecv").Return(&model.ImportReport{Success: true}, nil)
-				},
+			expectations: func(importer *mocks.ImporterClient, src *mocks.ImportSrc) {
+				streamMock := &mocks.Importer_ImportClientsClient{}
+				importer.On("ImportClients", context.Background()).Return(streamMock, nil)
+				streamMock.On("CloseAndRecv").Return(&model.ImportReport{Success: true}, nil)
 			},
 		},
 		{
 			name:      "correct headers with a client should call import clients and provide client with correct mobile number",
 			csvReader: bytes.NewBufferString(fmt.Sprintf("%s\n1,test,test@test.com,(123) 456789", strings.Join(userImportHeaders, ","))),
-			expectations: []func(*mocks.ImporterClient, *mocks.ImportSrc){
-				func(importer *mocks.ImporterClient, src *mocks.ImportSrc) {
-					streamMock := &mocks.Importer_ImportClientsClient{}
-					importer.On("ImportClients", context.Background()).Return(streamMock, nil)
-					streamMock.On("Send", &model.Client{Id: 1, Name: "test", Email: "test@test.com", MobileNumber: "+44123456789"}).Return(nil)
-					streamMock.On("CloseAndRecv").Return(&model.ImportReport{Success: true}, nil)
-				},
+			expectations: func(importer *mocks.ImporterClient, src *mocks.ImportSrc) {
+				streamMock := &mocks.Importer_ImportClientsClient{}
+				importer.On("ImportClients", context.Background()).Return(streamMock, nil)
+				streamMock.On("Send", &model.Client{Id: 1, Name: "test", Email: "test@test.com", MobileNumber: "+44123456789"}).Return(nil)
+				streamMock.On("CloseAndRecv").Return(&model.ImportReport{Success: true}, nil)
 			},
 		},
 	}
@@ -164,8 +157,8 @@ func TestImportsService_ImportCSV(t *testing.T) {
 				importSrc: srcMock,
 			}
 			// we provide all mocks with expected function calls and return values declared in the test definition
-			for _, expectation := range test.expectations {
-				expectation(importerMock, srcMock)
+			if test.expectations != nil {
+				test.expectations(importerMock, srcMock)
 			}
 			err := src.ImportCSV(test.csvReader)
 			if test.expectError {

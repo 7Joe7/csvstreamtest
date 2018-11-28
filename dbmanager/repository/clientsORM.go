@@ -13,7 +13,7 @@ type ORMClient struct {
 }
 
 // NewORMClient creates a new client repository using the given gorm DB.
-func NewORMClient(db *gorm.DB) *ORMClient {
+func NewORMClient(db *gorm.DB) ClientRepo {
 	return &ORMClient{db: db}
 }
 
@@ -85,7 +85,7 @@ func (repo *ORMClient) Find(clientIDs []uint) ([]*model.Client, error) {
 // NewWithTransaction creates new ORMClient with new transaction begun. The transaction can be propagated to other repositories.
 // The ORMClient object then serves as a transaction object (Rollback, Commit functions)
 // It is a shortcut basically, cleanest would be to have transaction object, then create new repos with that object.
-func (repo *ORMClient) NewWithTransaction() (*ORMClient, error) {
+func (repo *ORMClient) NewWithTransaction() (ClientRepo, error) {
 	ormClient := &ORMClient{db: repo.db.Begin()}
 	err := ormClient.db.Error
 	if err != nil {
